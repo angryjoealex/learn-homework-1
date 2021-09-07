@@ -20,7 +20,6 @@ def main():
     В ней надо заменить pass на ваш код
     """
     ##Initial setup
-    exit_code=0
     age_place_list = [
           {'place':'Детскому саду', 'min_age':1, 'max_age':6}
         , {'place':'Школе', 'min_age':7, 'max_age':18}
@@ -49,9 +48,11 @@ def main():
            print(f"Вы ввели не цифру! Попробуйте снова")
            return 0
    
-    while exit_code != 1:
+    while True:
         user_age=input('Пожалуйста введите свой возраст: ')
         exit_code=check_age(user_age)
+        if exit_code == 1:
+            break
  
 if __name__ == "__main__":
     main()
