@@ -12,12 +12,18 @@
 
 def hello_user():
     try:
-        return str=input("Как дела?")
-        
+        str=input("Как дела?")
+        #return str
         while str != 'хорошо':
-            str=input("Ну так не пойдет. Давай еще раз! Как дела? ")
-    except KeyboardInterrupt:
-        print("Пока")    
+            try:
+                str=input("Ну так не пойдет. Давай еще раз! Как дела? ")
+                if str == 'хорошо':
+                    print("Ну наконец то у тебя все наладилось! Пока")
+            except KeyboardInterrupt:
+                print(f"\nПока")
+                break                  
+    except KeyboardInterrupt: ## Достаточно этой проверки, но по заданию надо через while break,так что см выше
+        print(f"\nПока")    
     
     
 if __name__ == "__main__":
