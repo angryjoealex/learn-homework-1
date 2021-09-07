@@ -24,9 +24,10 @@ questions_and_answers = {
 
 
 def ask_user(answers_dict):
-    input_string=input("Что спросить? ")    
-    while 
-
+    input_string=input("Что спросить? ").strip().capitalize()    
+    while input_string in questions_and_answers:
+        print (questions_and_answers[input_string])
+        input_string=input("Что еще вам интересно ? ").strip().capitalize()    
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)
