@@ -37,8 +37,26 @@ def main():
             avg = ttl/counter
             answer =answer+ f"Class {class_dict[i]['school_class']} avg is {avg} \n"
         return answer 
+    ### Вариант решения 2
+    def avg_school2():
+        ttl = 0
+        counter = 0
+        for i in range(len(class_dict)):
+            ttl += sum(class_dict[i]['scores'])
+            counter += len(class_dict[i]['scores']) 
+        return f"School avg is {ttl/counter}"
 
+    def avg_class2():
+        answer=''
+        for i in range(len(class_dict)):
+            answer =answer+ f"Class {class_dict[i]['school_class']} avg is {sum(class_dict[i]['scores'])/len(class_dict[i]['scores'])} \n"
+        return answer 
+
+    print ("Вариант 1:")
     print (avg_school())
     print (avg_class())
+    print ("Вариант 2:")
+    print (avg_school2())
+    print (avg_class2())
 if __name__ == "__main__":
     main()
