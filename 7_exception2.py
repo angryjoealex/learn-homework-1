@@ -13,12 +13,24 @@
     
 """
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+def discounted(price, discount, max_discount=20):
+    try:
+        price = float(price)
+        discount = float(discount)
+        max_discount = int(max_discount)
+        price = abs(price)
+        discount = abs(discount)
+        max_discount = abs(max_discount)
+        if max_discount >= 100:
+            raise ValueError('Слишком большая максимальная скидка')
+        if discount >= max_discount:
+            return price
+        else:
+            return price - (price * discount / 100)
+    except (TypeError,ValueError):
+        return(f'Пожалуйста введите число цифрой')
+    ### Никак не получаетется поймать    TypeError в данной задаче. Строки, если там цифры, прекрасно преобразуются в числа 
+   
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))
@@ -26,3 +38,4 @@ if __name__ == "__main__":
     print(discounted("five", 5))
     print(discounted("сто", "десять"))
     print(discounted(100.0, 5, "10"))
+    print(discounted(100.0, 5, 10))
