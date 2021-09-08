@@ -16,27 +16,27 @@
 """
 
 
+def get_data_from_input(value1, value2):
+    try:
+        for value in (value1, value2):
+            float(value)
+            return 0
+    except Exception:
+        if value1 == value2:
+            return 1
+        if len(value1) > len(value2) and value2 != 'learn':
+            return 2
+        if value2 == 'learn':
+            return 3
+        else:
+            return 'Not defined case'
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    def get_data_from_input(value1, value2):
-        try:
-            for value in (value1, value2):
-                float(value)
-                return 0
-        except Exception:
-            if value1 == value2:
-                return 1
-            else:
-                if len(value1) > len(value2) and value2 != 'learn':
-                    return 2
-                elif value2 == 'learn':
-                    return 3
-                else:
-                    return 'Not defined case'
-
     input1 = input('Введите строку 1: ')
     input2 = input('Введите строку 2: ')
     print(get_data_from_input(input1, input2))
