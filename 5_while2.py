@@ -15,6 +15,7 @@
     
 """
 
+
 questions_and_answers = {
     "Как дела?": "Хорошо!",
     "Что делаешь?": "Программирую",
@@ -23,10 +24,12 @@ questions_and_answers = {
 
 
 def ask_user(answers_dict):
-    input_string = input("Что спросить? ").strip().capitalize()    
-    while questions_and_answers.get(input_string):
-        print(questions_and_answers.get(input_string))
-        input_string = input("Что еще вам интересно ? ").strip().capitalize()     
+    input_string = input("Что спросить? ").strip().capitalize()
+    answer = questions_and_answers.get(input_string)
+    while answer:
+        print(answer)
+        input_string = input("Что еще вам интересно ? ").strip().capitalize()
+        answer = questions_and_answers.get(input_string)   
 
 
 if __name__ == "__main__":
