@@ -11,10 +11,10 @@
 
 
 def hello_user():
-    str=input("Как дела? ")
-    while str != 'хорошо':
-        str=input("Ну так не пойдет. Давай еще раз! Как дела? ")
+    input_string = input("Как дела? ")
+    while input_string != 'хорошо':
+        input_string = input("Ну так не пойдет. Давай еще раз! Как дела? ")
 
-    
+
 if __name__ == "__main__":
     hello_user()

@@ -10,21 +10,21 @@
     
 """
 
+
 def hello_user():
-    try:
-        str=input("Как дела?")
-        #return str
-        while str != 'хорошо':
-            try:
-                str=input("Ну так не пойдет. Давай еще раз! Как дела? ")
-                if str == 'хорошо':
-                    print("Ну наконец то у тебя все наладилось! Пока")
-            except KeyboardInterrupt:
-                print(f"\nПока")
-                break                  
-    except KeyboardInterrupt: ## Достаточно этой проверки, но по заданию надо через while break,так что см выше
-        print(f"\nПока")    
-    
-    
+    input_string = input("Как дела?")
+    while input_string != 'хорошо':
+        try:
+            input_string = input("Ну так не пойдет. Давай еще раз! Как дела? ")
+        except KeyboardInterrupt:
+            print("\nПока")
+            break
+        if input_string == 'хорошо':
+            print("Ну наконец то у тебя все наладилось! Пока")
+
+
 if __name__ == "__main__":
-    hello_user()
+    try:
+        hello_user()
+    except KeyboardInterrupt:
+        print("\nПока")
