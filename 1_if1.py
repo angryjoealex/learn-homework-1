@@ -24,9 +24,9 @@ age_place = [
 def check_age(user_age):
     try:
         user_age = float(user_age)
-    except Exception:
+    except ValueError:
         print('Вы ввели не цифру! Попробуйте снова')
-        return False
+        return True
     else:
         if user_age <= 0:
             print('Возраст должен быть больше 0. Попробуйте снова')
