@@ -28,7 +28,7 @@ def discounted(price, discount, max_discount=20):
     if max_discount >= 100:
         message = 'Слишком большая максимальная скидка'
         return message
-    if discount >= max_discount:
+    elif discount >= max_discount:
         return price
     else:
         return price - (price * discount / 100)

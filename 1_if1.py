@@ -27,21 +27,20 @@ def check_age(user_age):
     except ValueError:
         print('Вы ввели не цифру! Попробуйте снова')
         return True
+    if user_age <= 0:
+        print('Возраст должен быть больше 0. Попробуйте снова')
+        return True
+    elif user_age >= 130:
+        print('Вы должны быть мертвы')
+        return False
+    elif 70 <= user_age < 130:
+        print('Вы на пенсии')
+        return False
     else:
-        if user_age <= 0:
-            print('Возраст должен быть больше 0. Попробуйте снова')
-            return True
-        elif user_age >= 130:
-            print('Вы должны быть мертвы')
-            return False
-        elif 70 <= user_age < 130:
-            print('Вы на пенсии')
-            return False
-        else:
-            for place in age_place:
-                if place['min_age'] <= user_age <= place['max_age']:
-                    print(f'Ваш возраст {user_age} который соответсвует {place["place"]}')
-                    return False
+        for place in age_place:
+            if place['min_age'] <= user_age <= place['max_age']:
+                print(f'Ваш возраст {user_age} который соответсвует {place["place"]}')
+                return False
 
 
 def main():
@@ -52,7 +51,7 @@ def main():
     while True:
         user_age = input('Пожалуйста введите свой возраст: ')
         return_code = check_age(user_age)
-        if return_code is False:
+        if not return_code:
             break
 
 

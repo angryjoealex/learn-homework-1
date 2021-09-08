@@ -28,7 +28,8 @@ def avg_school():
 def avg_class():
     answer = ''
     for score in school:
-        answer += f"Class {score['school_class']} avg is {sum(score['scores'])/len(score['scores'])} \n"
+        avg = sum(score['scores'])/len(score['scores'])
+        answer += f"Class {score['school_class']} avg is {avg} \n"
     return answer
 
 
