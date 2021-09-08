@@ -27,14 +27,13 @@ def get_planet_place(update, context):
         command, planet = input_message
     except ValueError:
         update.message.reply_text("Вы не ввели название планеты") 
-    else:
-        if not hasattr(ephem, planet):
-            update.message.reply_text("Введенная планета не найдена")
-            return
-        planet_info = getattr(ephem, planet)()
-        planet_info.compute(datetime.date.today())
-        planet_place = ephem.constellation(planet_info)
-        update.message.reply_text(planet_place)
+    if not hasattr(ephem, planet):
+        update.message.reply_text("Введенная планета не найдена")
+        return
+    planet_info = getattr(ephem, planet)()
+    planet_info.compute(datetime.date.today())
+    planet_place = ephem.constellation(planet_info)
+    update.message.reply_text(planet_place)
 
 
 def main():
