@@ -1,33 +1,12 @@
-"""
-Домашнее задание №1
-
-Использование библиотек: ephem
-
-* Установите модуль ephem
-* Добавьте в бота команду /planet, которая будет принимать на вход
-  название планеты на английском, например /planet Mars
-* В функции-обработчике команды из update.message.text получите
-  название планеты (подсказка: используйте .split())
-* При помощи условного оператора if и ephem.constellation научите
-  бота отвечать, в каком созвездии сегодня находится планета.
-
-"""
 import logging
-
+import settings
+import ephem
+import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
-
-
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
 
 
 def greet_user(update, context):
@@ -39,14 +18,29 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+
+def get_planet_place(update, context):
+    input_message = update.message.text.split()
+    try:
+        command, planet = input_message
+    except ValueError:
+        update.message.reply_text("Вы не ввели название планеты") 
+    if not hasattr(ephem, planet):
+        update.message.reply_text("Введенная планета не найдена")
+        return
+    planet_info = getattr(ephem, planet)()
+    planet_info.compute(datetime.date.today())
+    planet_place = ephem.constellation(planet_info)
+    update.message.reply_text(planet_place)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-
+    mybot = Updater(settings.API_KEY, use_context=True)
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet_place))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
